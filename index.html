@@ -60,7 +60,7 @@ footer {
 
 <nav>
   <a href="index.html">Home</a>
-  <a href="fake detection.html">Fake Detection</a>
+  <a href="fake-detection.html">Fake Detection</a>
   <a href="#" onclick="logoutUser()">Logout</a>
 </nav>
 
@@ -76,12 +76,12 @@ footer {
 <footer>© 2025 My Website</footer>
 
 <script>
-// 🔥 If NOT logged in → always go to login page
+// LOGIN CHECK
 if(localStorage.getItem("loggedIn") !== "true"){
     window.location.href = "login.html";
 }
 
-// logout function
+// LOGOUT
 function logoutUser(){
     localStorage.removeItem("loggedIn");
     window.location.href = "login.html";
@@ -90,4 +90,5 @@ function logoutUser(){
 
 </body>
 </html>
+
 
