@@ -4,157 +4,65 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home - Pastel Website</title>
+<title>Home</title>
 
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    font-family: "Poppins", Arial, sans-serif;
-    background: #FFEFA7;
-    color: #444;
-  }
-
-  header {
-    background: #FFE47A;
-    padding: 30px 0;
-    text-align: center;
-    border-bottom: 1px solid #e2c96c;
-  }
-
-  header h1 {
-    margin: 0;
-    font-size: 2rem;
-    font-weight: 600;
-    color: #5B4E23;
-  }
-
-  nav {
-    background: #ffffff;
-    padding: 12px 0;
-    display: flex;
-    justify-content: center;
-    gap: 35px;
-    border-bottom: 1px solid #eee4be;
-  }
-
-  nav a {
-    text-decoration: none;
-    color: #5B4E23;
-    font-size: 1rem;
-    padding: 8px 16px;
-    border-radius: 20px;
-    transition: 0.2s;
-  }
-
-  nav a:hover {
-    background: #FFF0B2;
-  }
-
-  .container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 25px;
-    background: white;
-    border-radius: 20px;
-    border: 1px solid #f0e2b8;
-  }
-
-  h2 {
-    text-align: center;
-    color: #5B4E23;
-    font-weight: 600;
-  }
-
-  .features {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 30px;
-    flex-wrap: wrap;
-    gap: 20px;
-  }
-
-  .card {
-    background: #FFF8D7;
-    padding: 20px;
-    width: 28%;
-    border-radius: 18px;
-    border: 1px solid #e8d59b;
-    text-align: center;
-    box-sizing: border-box;
-  }
-
-  .card h3 {
-    margin-bottom: 10px;
-    color: #6A5A2D;
-  }
-
-  footer {
-    margin-top: 40px;
-    text-align: center;
-    padding: 18px 0;
-    background: white;
-    border-top: 1px solid #efe3b4;
-    color: #777;
-    font-size: 0.9rem;
-  }
-
-  @media (max-width: 800px) {
-    .features {
-      flex-direction: column;
-      align-items: center;
-    }
-    .card {
-      width: 90%;
-    }
-  }
+body{
+  margin:0;padding:0;
+  font-family:"Poppins",sans-serif;
+  background:#FFF7C5;
+}
+header{
+  background:#FFE47A;padding:25px;text-align:center;
+}
+nav{
+  background:white;padding:15px;
+  display:flex;justify-content:center;gap:30px;
+}
+nav a{
+  text-decoration:none;color:#333;font-weight:600;
+  padding:8px 15px;border-radius:20px;
+  background:#FFF0B2;
+}
+.container{
+  max-width:800px;margin:40px auto;padding:20px;
+  background:white;border-radius:20px;
+}
 </style>
 </head>
 
 <body>
 
+<!-- HEADER -->
 <header>
-  <h1>Welcome </h1>
+  <h1>Welcome</h1>
 </header>
 
+<!-- NAVBAR -->
 <nav>
   <a href="index.html">Home</a>
   <a href="fake detection.html">Fake Detection</a>
   <a href="#" onclick="logoutUser()">Logout</a>
 </nav>
 
+<!-- MAIN CONTENT -->
 <div class="container">
-  <h2>Our Features</h2>
-
-  <div class="features">
-    <div class="card">
-      <h3>Fast Detection</h3>
-      <p>Our AI detects fake images/videos in seconds.</p>
-    </div>
-
-    <div class="card">
-      <h3>Secure Upload</h3>
-      <p>Your uploads are safe and protected.</p>
-    </div>
-
-    <div class="card">
-      <h3>Easy to Use</h3>
-      <p>A simple and clean user interface.</p>
-    </div>
-  </div>
+  <h2>Home Page</h2>
+  <p>This is your homepage. It opens only after login.</p>
 </div>
 
-<footer>
-  © 2025 My Website — All rights reserved.
-</footer>
-
 <script>
-function logoutUser() {
+// 🔥 If user NOT logged in → send to login page
+if(localStorage.getItem("loggedIn") !== "true"){
+    window.location.href = "login.html";
+}
+
+// Logout function
+function logoutUser(){
   localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";  // logout redirect
+  window.location.href = "login.html";
 }
 </script>
 
 </body>
 </html>
-
