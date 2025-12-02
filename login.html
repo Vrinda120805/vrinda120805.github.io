@@ -82,6 +82,18 @@ function loginUser(){
 
   if(email === testEmail && pass === testPass){
     localStorage.setItem("loggedIn", "true");
+    window.location.href = "index.html";  // redirect after login
+  } else {
+    alert("Wrong Email or Password!");
+  }
+}
+</script>
+
+</body>
+</html>
+
+
+
 
 
 
