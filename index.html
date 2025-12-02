@@ -1,64 +1,74 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home</title>
+<title>Home Page</title>
 
 <style>
 body{
-  margin:0;padding:0;
+  margin:0;
+  padding:0;
   font-family:"Poppins",sans-serif;
-  background:#FFF7C5;
+  background:#FFEFA7;
 }
 header{
-  background:#FFE47A;padding:25px;text-align:center;
+  background:#FFE47A;
+  padding:25px;
+  text-align:center;
+  font-size:25px;
+  font-weight:bold;
+  color:#5B4E23;
 }
 nav{
-  background:white;padding:15px;
-  display:flex;justify-content:center;gap:30px;
+  background:white;
+  padding:12px;
+  display:flex;
+  justify-content:center;
+  gap:40px;
+  border-bottom:1px solid #eedba0;
 }
 nav a{
-  text-decoration:none;color:#333;font-weight:600;
-  padding:8px 15px;border-radius:20px;
-  background:#FFF0B2;
+  text-decoration:none;
+  padding:8px 16px;
+  background:#FFF4C2;
+  border-radius:15px;
+  color:#5B4E23;
 }
 .container{
-  max-width:800px;margin:40px auto;padding:20px;
-  background:white;border-radius:20px;
+  width:90%;
+  margin:auto;
+  margin-top:30px;
+  padding:20px;
+  background:white;
+  border-radius:20px;
+  border:1px solid #f2de98;
 }
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
-<header>
-  <h1>Welcome</h1>
-</header>
+<header>Welcome</header>
 
-<!-- NAVBAR -->
 <nav>
   <a href="index.html">Home</a>
   <a href="fake detection.html">Fake Detection</a>
-  <a href="#" onclick="logoutUser()">Logout</a>
+  <a href="#" onclick="logout()">Logout</a>
 </nav>
 
-<!-- MAIN CONTENT -->
 <div class="container">
   <h2>Home Page</h2>
-  <p>This is your homepage. It opens only after login.</p>
+  <p>Welcome! You are now logged in.</p>
 </div>
 
 <script>
-// 🔥 If user NOT logged in → send to login page
+// ❗ Login Check (Very Important)
 if(localStorage.getItem("loggedIn") !== "true"){
-    window.location.href = "login.html";
+  window.location.href = "login.html";
 }
 
-// Logout function
-function logoutUser(){
+function logout(){
   localStorage.removeItem("loggedIn");
   window.location.href = "login.html";
 }
