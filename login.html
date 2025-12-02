@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -11,57 +11,48 @@ body{
   background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
   height:100vh;display:flex;justify-content:center;align-items:center;
 }
-
-.container{
-  width:380px;background:white;padding:35px;border-radius:18px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.2);text-align:center;
+.wrapper{
+  width:400px;background:#fff;border-radius:20px;
+  padding:40px;box-shadow:0 10px 40px rgba(0,0,0,0.1);
 }
-
-h2{margin-bottom:20px;color:#333;}
-
+h2{font-size:28px;color:#444;margin-bottom:20px;text-align:center;}
 input{
-  width:100%;padding:12px;margin-top:12px;border:1px solid #ccc;
-  border-radius:10px;font-size:16px;
+  width:100%;padding:12px;
+  border:1px solid #ccc;border-radius:10px;
+  margin-top:12px;font-size:15px;
 }
-
 button{
   width:100%;padding:12px;margin-top:20px;
-  background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
-  border:none;border-radius:10px;font-size:18px;font-weight:bold;
+  font-size:16px;border:none;border-radius:10px;
+  background:#a6c1ee;color:#fff;font-weight:bold;
   cursor:pointer;
 }
+button:hover{opacity:0.9;}
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="wrapper">
   <h2>Login</h2>
-
   <form onsubmit="event.preventDefault(); loginUser();">
-    <input type="email" id="loginEmail" placeholder="Enter Email" required>
-    <input type="password" id="loginPassword" placeholder="Enter Password" required>
+    <input type="email" id="loginEmail" placeholder="Email" required>
+    <input type="password" id="loginPassword" placeholder="Password" required>
     <button type="submit">Login</button>
   </form>
 </div>
 
 <script>
-// 🔥 If already logged in → send directly to homepage
-if(localStorage.getItem("loggedIn") === "true"){
-  window.location.href = "index.html";
-}
-
 function loginUser(){
   let email = document.getElementById("loginEmail").value;
   let pass = document.getElementById("loginPassword").value;
 
-  // Your test account
   const testEmail = "test@gmail.com";
   const testPassword = "1234";
 
   if(email === testEmail && pass === testPassword){
-    localStorage.setItem("loggedIn", "true");  // save login session
-    window.location.href = "index.html";       // go to homepage
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "index.html"; // Redirect to homepage
   } else {
     alert("Incorrect Email or Password!");
   }
@@ -70,4 +61,3 @@ function loginUser(){
 
 </body>
 </html>
-
