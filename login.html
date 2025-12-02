@@ -1,54 +1,33 @@
-<!DOCTYPE html>
+<<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Page</title>
+<title>Login</title>
 
 <style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
 body{
-  margin:0;
-  padding:0;
-  font-family:Arial, sans-serif;
   background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
+  height:100vh;display:flex;justify-content:center;align-items:center;
 }
 
-.box{
-  background:white;
-  padding:35px;
-  width:350px;
-  border-radius:20px;
-  box-shadow:0 10px 35px rgba(0,0,0,0.2);
-  text-align:center;
+.container{
+  width:380px;background:white;padding:35px;border-radius:18px;
+  box-shadow:0 10px 35px rgba(0,0,0,0.2);text-align:center;
 }
 
-.box h2{
-  margin-bottom:20px;
-}
+h2{margin-bottom:20px;color:#333;}
 
 input{
-  width:100%;
-  padding:12px;
-  margin-top:12px;
-  border:1px solid #bbb;
-  border-radius:10px;
+  width:100%;padding:12px;margin-top:12px;border:1px solid #ccc;
+  border-radius:10px;font-size:16px;
 }
 
 button{
-  width:100%;
-  padding:12px;
-  margin-top:20px;
-  background:#8ec5fc;
-  background:linear-gradient(135deg,#8ec5fc,#e0c3fc);
-  border:none;
-  border-radius:10px;
-  color:#444;
-  font-size:16px;
-  font-weight:bold;
+  width:100%;padding:12px;margin-top:20px;
+  background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
+  border:none;border-radius:10px;font-size:18px;font-weight:bold;
   cursor:pointer;
 }
 </style>
@@ -56,44 +35,39 @@ button{
 
 <body>
 
-<div class="box">
+<div class="container">
   <h2>Login</h2>
 
   <form onsubmit="event.preventDefault(); loginUser();">
-    <input type="email" id="email" placeholder="Enter Email" required>
-    <input type="password" id="password" placeholder="Enter Password" required>
-    <button>Login</button>
+    <input type="email" id="loginEmail" placeholder="Enter Email" required>
+    <input type="password" id="loginPassword" placeholder="Enter Password" required>
+    <button type="submit">Login</button>
   </form>
 </div>
 
 <script>
-/* ------------------------
-   DEFAULT LOGIN ACCOUNT
-   email: test@gmail.com
-   pass: 1234
--------------------------*/
+// 🔥 If already logged in → send directly to homepage
+if(localStorage.getItem("loggedIn") === "true"){
+  window.location.href = "index.html";
+}
 
 function loginUser(){
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
+  let email = document.getElementById("loginEmail").value;
+  let pass = document.getElementById("loginPassword").value;
 
+  // Your test account
   const testEmail = "test@gmail.com";
-  const testPass = "1234";
+  const testPassword = "1234";
 
-  if(email === testEmail && pass === testPass){
-    localStorage.setItem("loggedIn", "true");
-    window.location.href = "index.html";  // redirect after login
+  if(email === testEmail && pass === testPassword){
+    localStorage.setItem("loggedIn", "true");  // save login session
+    window.location.href = "index.html";       // go to homepage
   } else {
-    alert("Wrong Email or Password!");
+    alert("Incorrect Email or Password!");
   }
 }
 </script>
 
 </body>
 </html>
-
-
-
-
-
 
