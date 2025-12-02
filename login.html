@@ -54,4 +54,47 @@ input{padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:12px;font
   <div class="form-container signup-form">
     <h2>Create Account</h2>
     <form onsubmit="event.preventDefault(); signUpUser();">
-      <input type="text" place
+      <input type="text" placeholder="Full Name" required>
+      <input id="signupEmail" type="email" placeholder="Email" required>
+      <input id="signupPassword" type="password" placeholder="Password" required>
+      <button class="submit-btn">Sign Up</button>
+    </form>
+  </div>
+
+  <!-- RIGHT PANEL -->
+  <div class="toggle-container">
+    <h2>Hello!</h2>
+    <p>Click below to switch</p>
+    <button class="switch-btn" onclick="toggleForm()">Switch</button>
+  </div>
+
+</div>
+
+<script>
+function toggleForm(){
+  document.getElementById("mainWrapper").classList.toggle("active");
+}
+
+function loginUser(){
+  let email = document.getElementById("loginEmail").value;
+  let pass = document.getElementById("loginPassword").value;
+
+  const testEmail = "test@gmail.com";
+  const testPassword = "1234";
+
+  if(email === testEmail && pass === testPassword){
+    localStorage.setItem("loggedIn","true");
+    window.location.href = "index.html"; // FIXED: Home page
+  } else {
+    alert("Incorrect Email or Password!");
+  }
+}
+
+function signUpUser(){
+  alert("Account created successfully!");
+  toggleForm();
+}
+</script>
+
+</body>
+</html>
