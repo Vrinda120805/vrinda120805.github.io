@@ -3,76 +3,91 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Home Page</title>
+<title>Home</title>
 
 <style>
-body{
-  margin:0;
-  padding:0;
-  font-family:"Poppins",sans-serif;
-  background:#FFEFA7;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #FFEFA7;
+  color: #444;
 }
-header{
-  background:#FFE47A;
-  padding:25px;
+header {
+  background: #FFE47A;
+  padding: 30px 0;
+  text-align: center;
+  border-bottom: 1px solid #e2c96c;
+}
+header h1 { margin: 0; font-size: 2rem; font-weight: 600; color: #5B4E23; }
+nav {
+  background: white;
+  padding: 12px 0;
+  display: flex; justify-content: center; gap: 35px;
+  border-bottom: 1px solid #eee4be;
+}
+nav a {
+  text-decoration: none; color: #5B4E23;
+  padding: 8px 14px; border-radius:20px;
+}
+nav a:hover { background:#FFF0B2; }
+.container {
+  max-width: 900px; margin: 40px auto; padding: 25px;
+  background: white; border-radius:20px;
+  border:1px solid #f0e2b8;
+}
+.features {
+  display:flex; gap:20px; justify-content:space-between;
+  flex-wrap:wrap; margin-top:30px;
+}
+.card {
+  background:#FFF8D7; width:28%; padding:20px;
+  border-radius:18px; border:1px solid #e8d59b;
   text-align:center;
-  font-size:25px;
-  font-weight:bold;
-  color:#5B4E23;
 }
-nav{
-  background:white;
-  padding:12px;
-  display:flex;
-  justify-content:center;
-  gap:40px;
-  border-bottom:1px solid #eedba0;
-}
-nav a{
-  text-decoration:none;
-  padding:8px 16px;
-  background:#FFF4C2;
-  border-radius:15px;
-  color:#5B4E23;
-}
-.container{
-  width:90%;
-  margin:auto;
-  margin-top:30px;
-  padding:20px;
-  background:white;
-  border-radius:20px;
-  border:1px solid #f2de98;
+footer {
+  margin-top:40px; text-align:center; padding:18px 0;
+  background:white; border-top:1px solid #efe3b4;
 }
 </style>
 </head>
 
 <body>
 
-<header>Welcome</header>
+<header>
+  <h1>Welcome to My Website</h1>
+</header>
 
 <nav>
   <a href="index.html">Home</a>
   <a href="fake detection.html">Fake Detection</a>
-  <a href="#" onclick="logout()">Logout</a>
+  <a href="#" onclick="logoutUser()">Logout</a>
 </nav>
 
 <div class="container">
-  <h2>Home Page</h2>
-  <p>Welcome! You are now logged in.</p>
+  <h2>Features</h2>
+  <div class="features">
+    <div class="card"><h3>Fast</h3><p>Detects fake media fast.</p></div>
+    <div class="card"><h3>Secure</h3><p>Your data stays safe.</p></div>
+    <div class="card"><h3>Easy</h3><p>Simple interface.</p></div>
+  </div>
 </div>
 
+<footer>© 2025 My Website</footer>
+
 <script>
-// ❗ Login Check (Very Important)
+// 🔥 If NOT logged in → always go to login page
 if(localStorage.getItem("loggedIn") !== "true"){
-  window.location.href = "login.html";
+    window.location.href = "login.html";
 }
 
-function logout(){
-  localStorage.removeItem("loggedIn");
-  window.location.href = "login.html";
+// logout function
+function logoutUser(){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
 }
 </script>
 
 </body>
 </html>
+
