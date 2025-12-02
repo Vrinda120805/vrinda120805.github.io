@@ -17,10 +17,10 @@ body{
 }
 .form-container{width:50%;padding:45px;}
 .form-container h2{font-size:28px;color:#444;margin-bottom:10px;}
-input{padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:12px;font-size:15px;}
+input{padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:12px;font-size:15px;width:100%;}
 .submit-btn{
   margin-top:20px;padding:12px;background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
-  border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;
+  border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;
 }
 .toggle-container{
   width:50%;background:linear-gradient(135deg,#a6c1ee,#fbc2eb);color:#fff;
@@ -83,8 +83,8 @@ function loginUser(){
   const testPassword = "1234";
 
   if(email === testEmail && pass === testPassword){
-    localStorage.setItem("loggedIn","true");
-    window.location.href = "web.html";  // redirect to home page
+    localStorage.setItem("loggedIn", "true");
+    window.location.href = "index.html";  // FIXED REDIRECT
   } else {
     alert("Incorrect Email or Password!");
   }
@@ -98,3 +98,4 @@ function signUpUser(){
 
 </body>
 </html>
+
