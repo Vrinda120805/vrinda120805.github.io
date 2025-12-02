@@ -61,7 +61,7 @@ input{padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:12px;font
     </form>
   </div>
 
-  <!-- RIGHT PANEL -->
+  <!-- SWITCH PANEL -->
   <div class="toggle-container">
     <h2>Hello!</h2>
     <p>Click below to switch</p>
@@ -75,6 +75,7 @@ function toggleForm(){
   document.getElementById("mainWrapper").classList.toggle("active");
 }
 
+// LOGIN FUNCTION
 function loginUser(){
   let email = document.getElementById("loginEmail").value;
   let pass = document.getElementById("loginPassword").value;
@@ -84,12 +85,13 @@ function loginUser(){
 
   if(email === testEmail && pass === testPassword){
     localStorage.setItem("loggedIn","true");
-    window.location.href = "index.html"; // FIXED: Home page
+    window.location.href = "index.html";  // redirect to home
   } else {
     alert("Incorrect Email or Password!");
   }
 }
 
+// SIGNUP
 function signUpUser(){
   alert("Account created successfully!");
   toggleForm();
@@ -98,4 +100,3 @@ function signUpUser(){
 
 </body>
 </html>
-
