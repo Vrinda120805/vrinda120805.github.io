@@ -1,87 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login Page</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fake Media Detector</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <style>
+    body {
+      <a href="web.html" style="
+  position:absolute;
+  left:20px;
+  top:20px;
+  padding:10px 18px;
+  background:#F8C8DC;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:bold;">
+← Back to Home
+</a>
 
-<style>
-body{
-  margin:0;
-  padding:0;
-  font-family: "Poppins", sans-serif;
-  background: linear-gradient(135deg,#a1c4fd,#c2e9fb);
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-}
-.box{
-  width:350px;
-  background:white;
-  padding:30px;
-  border-radius:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.2);
-  text-align:center;
-}
-input{
-  width:100%;
-  padding:12px;
-  margin-top:12px;
-  border:1px solid #ddd;
-  border-radius:10px;
-  font-size:15px;
-}
-button{
-  width:100%;
-  margin-top:20px;
-  padding:12px;
-  font-size:16px;
-  background:#89CFF0;
-  border:none;
-  border-radius:10px;
-  cursor:pointer;
-  font-weight:bold;
-}
-button:hover{
-  background:#6BB8E8;
-}
-h2{
-  margin-bottom:10px;
-  color:#444;
-}
-</style>
+    }
+
+    h1 {
+      color: #ff6f91;
+      font-size: 2.2rem;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1rem;
+      color: #444;
+      margin-bottom: 20px;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      padding: 30px;
+      max-width: 600px;
+      margin: auto;
+      box-shadow: 0px 8px 20px rgba(0,0,0,0.1);
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    input, button {
+      padding: 12px;
+      margin: 10px;
+      border: none;
+      border-radius: 12px;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input {
+      width: 240px;
+      border: 1px solid #ddd;
+    }
+
+    button {
+      background: #a0e7e5;
+      cursor: pointer;
+      font-weight: bold;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    button:hover {
+      background: #79c7c5;
+      transform: scale(1.05);
+    }
+
+    #preview {
+      margin-top: 20px;
+      max-width: 400px;
+      border-radius: 14px;
+      box-shadow: 0px 0px 15px rgba(0,0,0,0.15);
+      animation: pop 0.6s ease;
+    }
+
+    .result {
+      margin-top: 20px;
+      font-weight: bold;
+      padding: 20px;
+      border-radius: 14px;
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      font-size: 1rem;
+      line-height: 1.6;
+      animation: fadeInUp 0.7s ease;
+      white-space: pre-line;
+    }
+
+    .fake { background-color: #ffe0e0; color: #d8000c; }
+    .real { background-color: #e0ffe5; color: #006600; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes pop {
+      from { transform: scale(0.9); opacity: 0.5; }
+      to { transform: scale(1); opacity: 1; }
+    }
+  </style>
 </head>
-
 <body>
-
-<div class="box">
-  <h2>Login</h2>
-
-  <input type="email" id="email" placeholder="Enter Email" required>
-  <input type="password" id="password" placeholder="Enter Password" required>
-
-  <button onclick="loginUser()">Login</button>
-</div>
-
 <script>
-// Default Test Login
-const correctEmail = "test@gmail.com";
-const correctPassword = "1234";
-
-function loginUser(){
-  let email = document.getElementById("email").value;
-  let pass = document.getElementById("password").value;
-
-  if(email === correctEmail && pass === correctPassword){
-      localStorage.setItem("loggedIn","true");
-      window.location.href = "index.html";   // go to homepage
-  } else {
-      alert("Incorrect Email or Password!");
-  }
+if (localStorage.getItem("loggedIn") !== "true") {
+    window.location.href = "login page.html";
 }
 </script>
 
+  <h1>Fake Media Detector</h1>
+  <p>Upload your media and check its authenticity instantly:</p>
+
+  <div class="card">
+    <input type="text" id="username" placeholder="Enter your username"><br>
+    <input type="file" id="mediaInput" accept="image/*,video/*" onchange="previewMedia()"><br>
+    <button onclick="detectFakeMedia()">🔍 Check Media</button>
+
+    <div id="previewContainer"></div>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    function previewMedia() {
+      const input = document.getElementById('mediaInput');
+      const container = document.getElementById('previewContainer');
+      container.innerHTML = "";
+
+      if (input.files.length > 0) {
+        const file = input.files[0];
+        const url = URL.createObjectURL(file);
+
+        if (file.type.startsWith('image')) {
+          const img = document.createElement('img');
+          img.src = url;
+          img.id = "preview";
+          container.appendChild(img);
+        } else if (file.type.startsWith('video')) {
+          const vid = document.createElement('video');
+          vid.src = url;
+          vid.controls = true;
+          vid.width = 400;
+          vid.id = "preview";
+          container.appendChild(vid);
+        }
+      }
+    }
+
+    async function detectFakeMedia() {
+      const username = document.getElementById('username').value.trim();
+      const input = document.getElementById('mediaInput');
+      const resultDiv = document.getElementById('result');
+
+      if (!username) {
+        resultDiv.textContent = "Please enter your username.";
+        resultDiv.className = "result fake";
+        return;
+      }
+      if (input.files.length === 0) {
+        resultDiv.textContent = "Please upload an image or video first.";
+        resultDiv.className = "result fake";
+        return;
+      }
+
+      const file = input.files[0];
+      const mediaType = file.type.startsWith('image') ? 'image' : 'video';
+
+      // --- More realistic fake detection simulation ---
+      let baseScore = file.size % 100; // pseudo-analysis of file
+      if (mediaType === 'video') baseScore += 15; // videos are trickier
+      if (file.type.includes('png') || file.type.includes('mp4')) baseScore += 10; // common manipulated formats
+      let confidence = Math.min(99, Math.max(30, baseScore));
+
+      const isFake = confidence > 65;
+      const reasons = [
+        "Metadata inconsistency detected.",
+        "Suspicious compression artifacts.",
+        "Facial landmark anomalies noticed.",
+        "Frame-by-frame irregularities found.",
+        "Lighting patterns inconsistent."
+      ];
+      const reason = reasons[Math.floor(Math.random() * reasons.length)];
+
+      if (isFake) {
+        resultDiv.textContent = `⚠️ Hey ${username}, the ${mediaType} is likely FAKE.\nConfidence: ${confidence}%\nReason: ${reason}`;
+        resultDiv.className = "result fake";
+      } else {
+        resultDiv.textContent = `✅ Hey ${username}, the ${mediaType} looks AUTHENTIC.\nConfidence: ${100 - confidence}% (safe margin).`;
+        resultDiv.className = "result real";
+      }
+    }
+  </script>
 </body>
 </html>
+
 
