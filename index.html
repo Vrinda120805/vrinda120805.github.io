@@ -3,96 +3,88 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Login & Signup</title>
+<title>Home</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:"Segoe UI",sans-serif;}
-body{
-  background:linear-gradient(135deg,#fbc2eb,#a6c1ee);
-  height:100vh;display:flex;justify-content:center;align-items:center;
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", Arial, sans-serif;
+  background: #FFEFA7;
+  color: #444;
 }
-.wrapper{
-  width:850px;background:#fff;border-radius:25px;box-shadow:0 10px 40px rgba(0,0,0,0.15);
-  display:flex;overflow:hidden;
+header {
+  background: #FFE47A;
+  padding: 30px 0;
+  text-align: center;
+  border-bottom: 1px solid #e2c96c;
 }
-.form-container{width:50%;padding:45px;}
-.form-container h2{font-size:28px;color:#444;margin-bottom:10px;}
-input{padding:12px;border:1px solid #ddd;border-radius:10px;margin-top:12px;font-size:15px;width:100%;}
-.submit-btn{
-  margin-top:20px;padding:12px;background:linear-gradient(135deg,#a1c4fd,#c2e9fb);
-  border:none;border-radius:12px;font-size:16px;font-weight:bold;cursor:pointer;width:100%;
+header h1 { margin: 0; font-size: 2rem; font-weight: 600; color: #5B4E23; }
+nav {
+  background: white;
+  padding: 12px 0;
+  display: flex; justify-content: center; gap: 35px;
+  border-bottom: 1px solid #eee4be;
 }
-.toggle-container{
-  width:50%;background:linear-gradient(135deg,#a6c1ee,#fbc2eb);color:#fff;
-  text-align:center;padding:60px 30px;
+nav a {
+  text-decoration: none; color: #5B4E23;
+  padding: 8px 14px; border-radius:20px;
 }
-.switch-btn{
-  padding:10px 30px;border:2px solid #fff;background:transparent;color:white;
-  border-radius:12px;font-size:15px;cursor:pointer;font-weight:bold;
+nav a:hover { background:#FFF0B2; }
+.container {
+  max-width: 900px; margin: 40px auto; padding: 25px;
+  background: white; border-radius:20px;
+  border:1px solid #f0e2b8;
 }
-.signup-form{display:none;}
-.wrapper.active .login-form{display:none;}
-.wrapper.active .signup-form{display:block;}
+.features {
+  display:flex; gap:20px; justify-content:space-between;
+  flex-wrap:wrap; margin-top:30px;
+}
+.card {
+  background:#FFF8D7; width:28%; padding:20px;
+  border-radius:18px; border:1px solid #e8d59b;
+  text-align:center;
+}
+footer {
+  margin-top:40px; text-align:center; padding:18px 0;
+  background:white; border-top:1px solid #efe3b4;
+}
 </style>
 </head>
 
 <body>
 
-<div class="wrapper" id="mainWrapper">
+<header>
+  <h1>Welcome to My Website</h1>
+</header>
 
-  <!-- LOGIN FORM -->
-  <div class="form-container login-form">
-    <h2>Welcome Back!</h2>
-    <form onsubmit="event.preventDefault(); loginUser();">
-      <input type="email" id="loginEmail" placeholder="Email" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
-      <button class="submit-btn">Login</button>
-    </form>
+<nav>
+  <a href="index.html">Home</a>
+  <a href="fake-detection.html">Fake Detection</a>
+  <a href="#" onclick="logoutUser()">Logout</a>
+</nav>
+
+<div class="container">
+  <h2>Features</h2>
+  <div class="features">
+    <div class="card"><h3>Fast</h3><p>Detects fake media fast.</p></div>
+    <div class="card"><h3>Secure</h3><p>Your data stays safe.</p></div>
+    <div class="card"><h3>Easy</h3><p>Simple interface.</p></div>
   </div>
-
-  <!-- SIGNUP FORM -->
-  <div class="form-container signup-form">
-    <h2>Create Account</h2>
-    <form onsubmit="event.preventDefault(); signUpUser();">
-      <input type="text" placeholder="Full Name" required>
-      <input id="signupEmail" type="email" placeholder="Email" required>
-      <input id="signupPassword" type="password" placeholder="Password" required>
-      <button class="submit-btn">Sign Up</button>
-    </form>
-  </div>
-
-  <!-- RIGHT PANEL -->
-  <div class="toggle-container">
-    <h2>Hello!</h2>
-    <p>Click below to switch</p>
-    <button class="switch-btn" onclick="toggleForm()">Switch</button>
-  </div>
-
 </div>
 
+<footer>© 2025 My Website</footer>
+
 <script>
-function toggleForm(){
-  document.getElementById("mainWrapper").classList.toggle("active");
+// If NOT logged in → go to login page
+if(localStorage.getItem("loggedIn") !== "true"){
+    window.location.href = "login.html";
 }
 
-function loginUser(){
-  let email = document.getElementById("loginEmail").value;
-  let pass = document.getElementById("loginPassword").value;
-
-  const testEmail = "test@gmail.com";
-  const testPassword = "1234";
-
-  if(email === testEmail && pass === testPassword){
-    localStorage.setItem("loggedIn","true");
-    window.location.href = "index.html";  // FIXED redirect
-  } else {
-    alert("Incorrect Email or Password!");
-  }
-}
-
-function signUpUser(){
-  alert("Account created successfully!");
-  toggleForm();
+// logout function
+function logoutUser(){
+    localStorage.removeItem("loggedIn");
+    window.location.href = "login.html";
 }
 </script>
 
